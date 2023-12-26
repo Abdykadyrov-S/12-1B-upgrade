@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     # apps
     'apps.base',
+    'apps.news',
 
     # django-ckeditor
     'ckeditor',
