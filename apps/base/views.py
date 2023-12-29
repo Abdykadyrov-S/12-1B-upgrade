@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import *
+from apps.telegram_bot.views import get_text
 
 # Create your views here.
 def index(request):
@@ -21,6 +22,7 @@ def contact(request):
         message = request.POST.get('message')
         Contact.objects.create(name=name, email=email, phone=phone, cause=cause, message=message)
         
+        get_text(f"Оставлен отзыв от пользователя {name} \nНомер телефона: {phone} \nПричина: {cause} \nСообщение: {message}")
         return redirect("index")
 
     return render(request, 'base/contact.html', locals())
